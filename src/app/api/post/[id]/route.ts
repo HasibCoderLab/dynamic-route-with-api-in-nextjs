@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 interface paramsType{
-params:{
-    id:number
-}
+params:Promise<{
+    id: string; 
+}>;
 }
 
-export function GET({params}:paramsType) {
-    const {id} = params;
+export  async function GET(request:NextRequest , {params}:paramsType) {
+    const {id} = await params
     return NextResponse.json({
         postId:id
     })
 }
+
+
